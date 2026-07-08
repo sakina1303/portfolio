@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Sakina Farukh Ahemad | Product-Focused Portfolio</title>
+    <meta name="description" content="Premium product design and engineering portfolio for Sakina Farukh Ahemad. Product thinker, software engineer, and AI builder.">
+    <meta name="theme-color" content="#0b1020">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <script>
         (function() {
@@ -14,273 +16,482 @@
             try {
                 const storedTheme = localStorage.getItem(storageKey);
                 const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-                const theme = storedTheme || (prefersLight ? 'light' : 'dark');
-                document.documentElement.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme', storedTheme || (prefersLight ? 'light' : 'dark'));
             } catch (error) {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                console.warn('Theme preference could not be retrieved before load:', error);
             }
         })();
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+
+    <header class="site-header">
         <div class="header-inner">
-            <a class="brand" href="#top" aria-label="Sakina Farukh Ahemad home">
-                <span class="brand-name">Sakina Farukh Ahemad</span>
+            <a class="brand" href="#hero" aria-label="Sakina Farukh Ahemad home">
+                <span class="brand-mark">SF</span>
+                <span class="brand-copy">
+                    <span class="brand-name">Sakina Farukh Ahemad</span>
+                    <span class="brand-role">Product-minded engineer</span>
+                </span>
             </a>
-            <nav class="main-nav">
+            <nav class="main-nav" aria-label="Primary">
                 <a href="#about">About</a>
-                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
+                <a href="#opensource">Open Source</a>
+                <a href="#skills">Skills</a>
+                <a href="#achievements">Achievements</a>
                 <a href="#contact">Contact</a>
             </nav>
             <div class="header-actions">
                 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Activate light mode" data-mode="dark">
-                    <span class="icon sun" aria-hidden="true">☀️</span>
-                    <span class="icon moon" aria-hidden="true">🌙</span>
+                    <span class="icon sun" aria-hidden="true">☀</span>
+                    <span class="icon moon" aria-hidden="true">☾</span>
                     <span class="theme-toggle-label">Dark</span>
                 </button>
-                <a class="btn btn-ghost" href="#contact">Let's Connect</a>
+                <a class="btn btn-ghost" href="https://drive.google.com/file/d/1E0ys_E8xgMWXHF6oiLmTT4LqMigGJTUM/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
             </div>
+        </div>
+        <div class="section-indicator" aria-hidden="true">
+            <span class="section-indicator-label">Now viewing</span>
+            <span id="activeSectionLabel">Hero</span>
         </div>
     </header>
 
-    <section class="hero" id="top">
-        <div class="hero-inner">
-            <div class="hero-content">
-                <h1 class="hero-title" data-reveal="fade-up">Sakina Farukh Ahemad</h1>
-                <p class="hero-subtitle" data-reveal="fade-up" data-reveal-delay="80">Developer • Designer • Community Builder</p>
-                <p class="hero-intro" data-reveal="fade-up" data-reveal-delay="140">I design and build immersive digital experiences that blend creative storytelling with reliable engineering. My goal is to make technology feel warm, intuitive, and a joy to use.</p>
-                <p class="hero-intro" data-reveal="fade-up" data-reveal-delay="200">From prototyping UI ideas to deploying full-stack products, I care about inclusive design, thoughtful collaboration, and exploring how AI augments human potential.</p>
-                <div class="hero-actions" data-reveal="fade-up" data-reveal-delay="260">
-                    <a class="btn btn-primary hero-btn" href="https://drive.google.com/file/d/1E0ys_E8xgMWXHF6oiLmTT4LqMigGJTUM/view?usp=sharing" target="_blank" rel="noopener">View Resume</a>
-                    <a class="btn btn-secondary hero-btn" href="#projects">View Projects</a>
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-blobs" aria-hidden="true">
+                <span class="blob blob-a"></span>
+                <span class="blob blob-b"></span>
+                <span class="blob blob-c"></span>
+            </div>
+            <div class="hero-inner">
+                <div class="hero-copy" data-reveal="fade-up">
+                    <h1 class="hero-title">Sakina Farukh Ahemad</h1>
+                    <p class="hero-subtitle">Software Engineer • Product Thinker • AI Builder</p>
+                    <p class="hero-intro">I design and build products that solve real problems through thoughtful user experiences and scalable engineering.</p>
+                    <p class="hero-note">My work sits at the intersection of product judgment, design taste, and execution. I like turning ambiguity into clear experiences people actually want to use.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#projects">View Projects</a>
+                        <a class="btn btn-secondary" href="https://drive.google.com/file/d/1VFxgRTrlvoWx4Cqed3bXy0hctzIx0Iu1/view?usp=sharing" target="_blank" rel="noopener">Download Resume</a>
+                        <a class="btn btn-ghost subtle" href="https://github.com/sakina1303" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost subtle" href="https://www.linkedin.com/in/sakina-farukh-ahemad-809b3732b/" target="_blank" rel="noopener">LinkedIn</a>
+                    </div>
+                    <div class="hero-pills" aria-label="Highlights">
+                        <span>Product intuition</span>
+                        <span>Design systems</span>
+                        <span>AI experiences</span>
+                        <span>Scalable frontends</span>
+                    </div>
+                    <div class="hero-projects" aria-label="Featured projects preview">
+                        <a class="hero-project-card" href="#projects">
+                            <span class="hero-project-tag">Featured project</span>
+                            <strong>Aurora</strong>
+                            <p>Habit-forming journaling with mood tracking and photo entries.</p>
+                        </a>
+                        <a class="hero-project-card" href="#projects">
+                            <span class="hero-project-tag">Hackathon project</span>
+                            <strong>Offline AI Learning Platform</strong>
+                            <p>Offline-first learning for low-connectivity regions.</p>
+                        </a>
+                        <a class="hero-project-card" href="#projects">
+                            <span class="hero-project-tag">Product system</span>
+                            <strong>HostelCare</strong>
+                            <p>Complaint tracking and admin visibility for hostel operations.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-card-wrap parallax" data-parallax="0.08">
+                    <div class="hero-card" data-reveal="zoom" data-reveal-delay="80">
+                        <div class="hero-card-top">
+                            <span class="status-pill">Open to opportunities</span>
+                            <span class="status-meta">PM • Product design • SWE • Founder’s office</span>
+                        </div>
+                        <div class="portrait-frame">
+                            <img src="img.JPG" alt="Portrait of Sakina Farukh Ahemad" loading="eager" decoding="async">
+                        </div>
+                        <div class="hero-card-stats">
+                            <div>
+                                <strong>6+</strong>
+                                <span>featured products</span>
+                            </div>
+                            <div>
+                                <strong>3</strong>
+                                <span>internships</span>
+                            </div>
+                            <div>
+                                <strong>AI</strong>
+                                <span>product focus</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-visual parallax" data-parallax="0.18">
-                <div class="hero-avatar" data-reveal="fade-up" data-reveal-delay="200">
-                    <img src="img.JPG" alt="Portrait of Sakina Farukh" />
+        </section>
 
+        <section id="about" class="section shell section-split" data-reveal="fade-up">
+            <div class="section-heading">
+                <p class="section-kicker">About</p>
+                <h2 class="section-title">Curiosity turned into craft.</h2>
+            </div>
+            <div class="split-grid">
+                <div class="story-card">
+                    <p>I started by wanting to understand how products work, not just how to ship code. That curiosity became a habit of looking at problems from the user’s side first, then designing the simplest way to solve them.</p>
+                    <p>I enjoy building with a product lens: what is actually useful, what reduces friction, what creates delight, and what can scale without losing clarity. That mindset shows up in the interfaces I design, the systems I build, and the teams I like working with.</p>
+                </div>
+                <div class="story-card story-highlight">
+                    <p>I care about AI when it makes experiences more personal and more accessible, not just more impressive. I’m drawn to products where thoughtful interaction design and solid engineering create something that feels calm, useful, and memorable.</p>
+                    <div class="story-tags">
+                        <span>Curiosity</span>
+                        <span>Building</span>
+                        <span>Product thinking</span>
+                        <span>AI</span>
+                        <span>Delightful UX</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="section" data-reveal="fade-up">
-        <h1 class="section-title">About Me</h1>
-        <h4 class="lead">I’m a developer with end-to-end experience in building scalable, user-centric applications.</h4>
-        <p>Driven by curiosity and a passion for problem-solving, I’ve worked on full-stack systems at a Bangalore-based agritech startup and contributed to AI-driven solutions and NLP research through Google Summer of Code. I enjoy designing clean architectures and building scalable, impactful applications that combine strong engineering with thoughtful design.</p>
-    </section>
+        <section id="experience" class="section shell" data-reveal="fade-up">
+            <div class="section-heading">
+                <p class="section-kicker">Experience</p>
+                <h2 class="section-title">A timeline of product execution.</h2>
+            </div>
+            <div class="timeline">
+                <article class="timeline-item" data-reveal="fade-up" data-reveal-delay="40">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-meta">
+                        <span class="timeline-role">Product Management Intern</span>
+                        <span class="timeline-company">Newwton LLC</span>
+                        <span class="timeline-date">Dec 2025 – March 2026t</span>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Worked across Engineering, Design, DevOps, and Product to turn product requirements into execution-ready plans.</p>
+                        <ul>
+                            <li>Owned sprint tracking and cross-functional coordination.</li>
+                            <li>Designed user journeys with user-first decision making.</li>
+                            <li>Translated ambiguous requirements into clear action for teams.</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="timeline-item" data-reveal="fade-up" data-reveal-delay="120">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-meta">
+                        <span class="timeline-role">Software Engineering Intern</span>
+                        <span class="timeline-company">Aironotics Technology</span>
+                        <span class="timeline-date">Apr 2025 – Jul 2025</span>
+                    </div>
+                    <div class="timeline-body">
+                        <p>Led a team of 3 developers and helped ship stable frontend systems with strong collaboration habits.</p>
+                        <ul>
+                            <li>Built authentication systems and scalable frontend experiences.</li>
+                            <li>Reduced bugs through tighter collaboration and code review.</li>
+                            <li>Used GitHub and Slack to keep execution clear and accountable.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-    <section id="education" class="section" data-reveal="fade-up">
-        <h1 class="section-title">Education</h1>
-        <p>Bachelor of Technology in Computer Science and Engineering with specializiation in Ai & ML</p>
-        <p>Newton School of Technology, ADYPU, Pune</p>
-        <p>Expected Graduation: 2028</p>
-        <p>Relevant Coursework: Data Structures, Algorithms, Web Development, Database Management Systems</p>
-    </section>
+        <section id="projects" class="section shell" data-reveal="fade-up">
+            <div class="section-heading section-heading-row">
+                <div>
+                    <p class="section-kicker">Featured Projects</p>
+                    <h2 class="section-title">Case studies, not cards.</h2>
+                </div>
+                <p class="section-copy">Each project is framed around the problem, the product thinking, and the impact. The goal is to show how I approach products, not just what I built.</p>
+            </div>
 
-    <section id="skills" class="section" data-reveal="fade-up">
-        <h1 class="section-title">My Skills</h1>
-        <ul class="skills-list">
-        <li><strong>Programming Languages:</strong> HTML, CSS, JavaScript, Python, C++, SQL (MySQL)</li> 
-        <li><strong>Frameworks & Libraries:</strong> React, React Native, Node.js, Express.js, Prisma ORM</li>
-        <li><strong>Development Tools:</strong> Git, GitHub, Webflow, Vercel</li>
-        <li><strong>Databases & Backend Services:</strong> MongoDB, Supabase</li>
-        <li><strong>Design Tools:</strong> Figma, Canva</li>
-        <li><strong>Other Skills:</strong> Responsive Design, UI/UX Design, Debugging, Problem Solving</li>
-        </ul>
-        <div class="tech-icon-grid" aria-label="Technology stack logos">
-            <div class="tech-icon" role="img" aria-label="HTML5"><i class="devicon-html5-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="CSS3"><i class="devicon-css3-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="JavaScript"><i class="devicon-javascript-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Python"><i class="devicon-python-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="C Plus Plus"><i class="devicon-cplusplus-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="MySQL"><i class="devicon-mysql-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="React"><i class="devicon-react-original colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="React Native"><i class="devicon-react-original colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Node.js"><i class="devicon-nodejs-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Express.js"><i class="devicon-express-original" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Prisma ORM"><i class="devicon-prisma-original" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Git"><i class="devicon-git-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="GitHub"><i class="devicon-github-original" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="MongoDB"><i class="devicon-mongodb-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Supabase"><span class="tech-icon-fallback" aria-hidden="true">SB</span></div>
-            <div class="tech-icon" role="img" aria-label="Webflow"><span class="tech-icon-fallback" aria-hidden="true">WF</span></div>
-            <div class="tech-icon" role="img" aria-label="Vercel"><i class="devicon-vercel-original" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Figma"><i class="devicon-figma-plain colored" aria-hidden="true"></i></div>
-            <div class="tech-icon" role="img" aria-label="Canva"><span class="tech-icon-fallback" aria-hidden="true">Cv</span></div>
-        </div>
-    </section>
+            <div class="case-studies">
+                <article class="case-study featured" data-reveal="fade-up">
+                    <div class="case-study-visual aurora">
+                        <div class="mock-window">
+                            <div class="mock-toolbar"><span></span><span></span><span></span></div>
+                            <div class="mock-screen aurora-screen">
+                                <img class="project-art" src="aurora.png" alt="Aurora app screen showing the journaling interface">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="project-head">
+                            <div>
+                                <p class="project-name">Aurora</p>
+                                <h3>Helping people build a journaling habit instead of simply writing notes.</h3>
+                            </div>
+                            <span class="project-badge">Featured</span>
+                        </div>
+                        <p class="project-hook">Mood tracking, vision boards, habit tracking, and photo journaling wrapped in a pastel product experience.</p>
+                        <div class="project-grid">
+                            <div><span>Problem</span><p>Most journaling tools feel like empty documents and don’t create enough emotional pull to build a habit.</p></div>
+                            <div><span>Solution</span><p>Designed a reflective experience that blends mood, visuals, and routines into one calming flow.</p></div>
+                            <div><span>My Role</span><p>Product thinking, UX design, frontend engineering, and interaction polish.</p></div>
+                            <div><span>Tech Stack</span><p>React Native, Expo, mobile-first UI patterns.</p></div>
+                            <div><span>Key Features</span><p>Mood tracking, vision board, habit tracking, photo journaling, pastel aesthetic.</p></div>
+                            <div><span>Impact</span><p>Built a more emotionally engaging journaling experience that feels consistent and personal.</p></div>
+                        </div>
+                        <div class="project-links">
+    <a href="https://drive.google.com/file/d/15fNx8J8k5eB9IbzLDBfyymWRCvcBIUTI/view?usp=sharing" target="_blank" rel="noopener">Live Demo</a>
+    <a href="https://github.com/sakina1303/Aurora" target="_blank" rel="noopener">GitHub</a>
+</div>
+                    </div>
+                </article>
 
-     <section id="achievements" class="section achievements-section" data-reveal="fade-up">
-        <h1 class="section-title">Achievements</h1>
-        <ul class="bulleted-list">
-             <li>LOR and certification from Newton school of technology for leading a project.</li>
-            <li>Contributed to open-source projects on GitHub, gaining recognition from the community.</li>
-            <li>Developed and deployed multiple web applications with a focus on user experience.</li>
-            <li>Advanced to the second round of the 'VisionVault' competition by analyzing HR-based scenarios.</li>
-            <li>Actively contributed to Hacktoberfest, enhancing collaboration and open-source contribution skills.</li>
-            <li>Participated in various hackathons, showcasing problem-solving skills and teamwork.</li>
-            <li>Completed multiple online courses to enhance technical skills and knowledge.</li>
-            <li>Received positive feedback from peers and mentors for collaborative projects.</li>
-        </ul>
-    </section>
+                <article class="case-study" data-reveal="fade-up">
+                    <div class="case-study-visual hostelcare">
+                        <div class="mock-window">
+                            <div class="mock-toolbar"><span></span><span></span><span></span></div>
+                            <div class="mock-screen aurora-screen">
+                                <img class="project-art" src="hostel.png" alt="HostelCare app screen showing the interface">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="project-head">
+                            <div>
+                                <p class="project-name">HostelCare</p>
+                                <h3>Making hostel management effortless for students and administrators.</h3>
+                            </div>
+                        </div>
+                        <p class="project-hook">A React Native app that simplifies complaints, triage, and maintenance visibility.</p>
+                        <div class="project-grid compact">
+                            <div><span>Problem</span><p>Students needed a simpler way to report issues and track resolution without follow-up chaos.</p></div>
+                            <div><span>Solution</span><p>Created a complaint flow with status tracking, upvotes, and clear admin visibility.</p></div>
+                            <div><span>My Role</span><p>Mobile product design and implementation.</p></div>
+                            <div><span>Tech Stack</span><p>React Native, Expo.</p></div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/15RfFafLZPKZs7y2xzFrKZS2K-7qQezQR/view?usp=sharing" target="_blank" rel="noopener">Live Demo</a>
+                            <a href="https://github.com/sakina1303/HostelCare" target="_blank" rel="noopener">GitHub</a>
+                        </div>
+                    </div>
+                </article>
 
-    <section id="extra-curricular" class="section" data-reveal="fade-up">
-        <h1 class="section-title">Extra-Curricular Activities</h1>
-        <ul class="bulleted-list">
-            <li>Member , Developers club (NST-SDC), Involved in student clubs and organizations, fostering networking and collaboration.</li>
-             <li>Contributed to open-source projects on GitHub, gaining recognition from the community.</li>
-             <li>Member, E-Cell Club – Collaborating on entrepreneurial initiatives, networking with industry leaders, and contributing to startup-driven projects.</li>  
-            <li>Member, Content Creation Club – Developing engaging content, enhancing digital presence, and managing creative storytelling for various campaigns.</li>
-            <li>Core organizer of the first TechFest at Newton School of Technology, ADYPU, Pune.</li>
-            <li>Engaged in community service and volunteering activities, promoting teamwork and leadership.</li>
-            <li>Participated in workshops and seminars to stay updated with the latest industry trends.</li> <li>Semi-Finalist, Super Model Maharashtra (Season 2) – Achieved recognition in Maharashtra’s top fashion show, demonstrating poise, confidence, and stage presence.</li>
-            <li>Performed in a dance event on NSS Day (September 24) as part of the National Service Scheme (NSS) celebrations, demonstrating teamwork, cultural engagement, and event participation.</li>
-          
-            </ul>
-    </section>
+                <article class="case-study" data-reveal="fade-up">
+                    <div class="case-study-visual offline-ai">
+                        <div class="mock-window">
+                            <div class="mock-toolbar"><span></span><span></span><span></span></div>
+                            <div class="mock-screen aurora-screen">
+                                <img class="project-art" src="sih.png" alt="Offline AI Learning Platform app screen showing the interface">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="project-head">
+                            <div>
+                                <p class="project-name">Offline AI Learning Platform</p>
+                                <h3>Making quality education accessible without internet.</h3>
+                            </div>
+                            <span class="project-badge">Hackathon</span>
+                        </div>
+                        <p class="project-hook">Built for Smart India Hackathon with a student-first experience for low-connectivity regions.</p>
+                        <div class="project-grid compact">
+                            <div><span>Problem</span><p>Students in low-connectivity regions often lose access to reliable learning support.</p></div>
+                            <div><span>Solution</span><p>Designed an offline AI assistant with personalized learning and lightweight on-device intelligence.</p></div>
+                            <div><span>My Role</span><p>Experience design, product framing, and engineering execution.</p></div>
+                            <div><span>Tech Stack</span><p>Offline-first architecture, lightweight on-device model, AI workflows.</p></div>
+                            <div><span>Key Features</span><p>Offline AI assistant, personalized learning, student-first flows.</p></div>
+                            <div><span>Impact</span><p>Focused the concept on accessibility and consistent learning regardless of network quality.</p></div>
+                        </div>
+                        <div class="project-links">
+    <a href="https://github.com/sakina1303/cookinsih" target="_blank" rel="noopener">GitHub</a>
+</div>
+                </article>
 
-   
+                <article class="case-study" data-reveal="fade-up">
+                    <div class="case-study-visual permkit">
+                        <div class="mock-window">
+                            <div class="mock-toolbar"><span></span><span></span><span></span></div>
+                            <div class="mock-screen permkit-screen">
+                                <img class="project-art" src="stackmate.png" alt="StackMate VS Code extension interface">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="project-head">
+                            <div>
+                                <p class="project-name">StackMate</p>
+                                <h3>Your all-in-one developer workspace inside VS Code.</h3>
+                            </div>
+                        </div>
+                        <p class="project-hook">A productivity-focused VS Code extension that brings notes, JSON validation, Stack Overflow search, GitHub search, color picker, internet status, and developer utilities into one seamless workspace.</p>
+                        <div class="project-grid compact">
+                            <div><span>Problem</span><p>Developers constantly switch between multiple websites and tools while coding, reducing focus and productivity.</p></div>
+                            <div><span>Solution</span><p>Built a VS Code extension that centralizes frequently used developer tools into one integrated workspace inside the editor.</p></div>
+                            <div><span>My Role</span><p>Product design, UX thinking, extension architecture, frontend development, and feature implementation.</p></div>
+                            <div><span>Tech Stack</span><p>TypeScript, JavaScript, VS Code API, HTML, CSS, Webview API.</p></div>
+                            <div><span>Key Features</span><p>Notes, JSON Formatter, Stack Overflow Search, GitHub Search, Internet Status, Color Picker, Theme Toggle, Language Switcher, Tree Visualizer, Developer Utilities.</p></div>
+                            <div><span>Impact</span><p>Reduced developer context switching by bringing commonly used tools into a single productivity-focused extension.</p></div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://marketplace.visualstudio.com/items?itemName=Sakina.Stackmate" target="_blank" rel="noopener">Live Demo</a>
+                            <a href="https://github.com/sakina1303/StackMate_VS-code-Extension" target="_blank" rel="noopener">GitHub</a>
+                        </div>
+                        
+                    </div>
+                </article>
 
-    <section id="projects" class="section" data-reveal="fade-up">
-        <h1 class="section-title">My Projects</h1>
-        <div class="projects">
-             <div class="project" data-reveal="fade-up">
-                <h3>HostelCare</h3>
-                <p>HostelCare is a mobile app built using React Native and Expo for managing hostel complaints. Students can submit complaints, track status, and upvote issues, while wardens assign and resolve them. It provides clear insights like top issues and open complaint counts for better maintenance management.</p>
-                <a href="https://drive.google.com/file/d/15RfFafLZPKZs7y2xzFrKZS2K-7qQezQR/view?usp=sharing" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/HostelCare" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>AI Quiz Generator</h3>
-                <p>AI Quiz Generator is a smart web app that lets users instantly generate topic-based quizzes using Google’s powerful Gemini AI. Whether you're preparing for exams or just testing your knowledge, this tool helps you learn in an interactive way by generating customized multiple-choice questions (MCQs) on any topic you enter.</p>
-                <a href="https://aiquizgenerator-69r2.onrender.com/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/QuizGenerator" target="_blank">View GitHub Repo</a>
-            </div>
-             <div class="project" data-reveal="fade-up">
-                <h3>Agroedge</h3>
-                <p>AgroEdge is a growing agri-tech startup focused on building smart, accessible digital solutions for farmers and agricultural businesses. I contributed to the platform by building an authentication system, integrating an “Apply Now” flow, and developing both frontend and backend features connected to Supabase for real-time data handling. I also collaborated closely with the team, reviewed code, and maintained high-quality, reliable development practices.</p>
-                <a href="https://agroedge-vf.netlify.app/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/agroedge" target="_blank">View GitHub Repo</a>
-            </div>
-             <div class="project" data-reveal="fade-up">
-                <h3>Operations-Agroedge</h3>
-                <p>Operations-AgroEdge is a role-based full-stack platform built for internal operations at the agritech startup AgroEdge. The system uses a layered permission model with Super Admin, Admin, Mentor, and User roles, each having dedicated dashboards and capabilities. The platform supports essential operational workflows such as user management, role assignment, profile handling, meeting scheduling, and task coordination. Each feature is designed with clean UI, scalable backend logic, and secure, role-specific access.</p>
-                <!-- <a href="https://agroedge-vf.netlify.app/" target="_blank">View Project</a> -->
-                <br>
-                <a href="https://github.com/sakina1303/oprations-agroedge" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>Closy</h3>
-                <p>Closy makes aesthetic outfit decisions effortless by suggesting looks based on your mood and event. It saves time, eliminates decision fatigue, and helps you create polished, stylish combinations with ease. Just pick a vibe, and Closy handles the rest.</p>
-                <a href="https://closy-fashion-app-git-main-sakinas-projects-b18e5d9d.vercel.app/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/closy-fashion-app" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>Aurora</h3>
-                <p>Aurora is a modern digital diary app that makes journaling simple, aesthetic, and meaningful. It allows users to write daily entries, track their mood, add photos, and enjoy guided prompts. The app also includes a Vision Board for inspiration and a Habit Tracker to build consistency, all wrapped in a soothing pastel design with smooth animations for an engaging experience.</p>
-                <br>
-                <a href="https://github.com/sakina1303/Aurora" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>PermKit</h3>
-                <p>Developed PermKit, a lightweight permission-handling utility for React Native apps supporting Camera, Location, Microphone, and Photo Library access. Built with React Native and react-native-permissions, using platform-specific mapping through the Platform API. Improved cross-platform stability by reducing permission errors and streamlining integration across multiple projects.</p>
-                <a href="https://www.npmjs.com/package/permkit" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/permKit" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>StackMate</h3>
-                <p>StackMate is a multipurpose VS Code extension that enhances developer productivity by centralizing tools like Stack Overflow search, personal notes, a JSON validator, color picker, internet status checker, language switcher, and a tree visualizer, all inside VS Code.</p>
-                <!-- <a href="" target="_blank">View Project</a> -->
-                <br>
-                <a href="https://github.com/sakina1303/VS-code-Extension" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>Ivory Luxe</h3>
-                <p>Developed a responsive Event Planner Website using HTML, CSS, and JavaScript to streamline event management. Key features include:</p>
-                <ul>
-                    <li>Interactive Map Integration that allows users to select and view event locations dynamically.</li>
-                    <li>Event Registration Form that enables users to enter event details and submit information seamlessly.</li>
-                    <li>Responsive UI that ensures a smooth experience across different devices.</li>
-                </ul>
-                <a href="http://birajitsaikia.me/Endsemproject/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/biru-codeastromer/Endsemproject" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>Sip & Savor</h3>
-                <p>A visually stunning and modern portfolio website designed on Webflow, showcasing my skills, projects, and passion for AI, full-stack development, and open-source contributions. Crafted with a sleek, user-friendly interface to create a seamless browsing experience.</p>
-                <a href="https://birajits-superb-site.webflow.io" target="_blank">View Project</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>bmi calculator</h3>
-                <p>A user-friendly BMI (Body Mass Index) calculator that quickly determines BMI based on height and weight inputs. Designed for accuracy and ease of use, it helps users understand their health category with a clean and intuitive interface.</p>
-                <a href="https://bmicalculator-black-chi.vercel.app/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/bmicalculator" target="_blank">View GitHub Repo</a>
-            </div>
-            <div class="project" data-reveal="fade-up">
-                <h3>Get The Weather</h3>
-                <p>weather site provides real-time weather updates for any location, displaying temperature, humidity, and other key details. It offers a simple and user-friendly interface for quick and accurate forecasts.</p>
-                <a href="https://weather-five-ecru.vercel.app/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/Weather" target="_blank">View GitHub Repo</a>
-            </div>
-            <!-- <div class="project" data-reveal="fade-up">
-                <h3>Rock Paper Scissor</h3>
-                <p>A simple and interactive Rock-Paper-Scissors game that lets users play against the computer. Built with a clean UI and smooth functionality, it delivers a fun and engaging experience while demonstrating core programming logic and user interaction.</p>
-                <a href="https://rock-paper-scissors-git-main-sakinas-projects-b18e5d9d.vercel.app/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/RockPaperScissors" target="_blank">View GitHub Repo</a>
-            </div> -->
-            
-            <div class="project" data-reveal="fade-up">
-                <h3>flashcards</h3>
-                <p>An interactive flashcard application designed to enhance learning and memorization. Users can create, review, and test themselves with customizable flashcards, making studying more efficient and engaging..</p>
-                <a href="https://flashcards-ebon-nu.vercel.app/" target="_blank">View Project</a>
-                <br>
-                <a href="https://github.com/sakina1303/flashcards" target="_blank">View GitHub Repo</a>
-            </div>
-            
-        </div>
-    </section>
+                <article class="case-study" data-reveal="fade-up">
+                    <div class="case-study-visual agroedge">
+                        <div class="mock-window">
+                            <div class="mock-toolbar"><span></span><span></span><span></span></div>
+                            <div class="mock-screen aurora-screen">
+                                <img class="project-art" src="agroedge.png" alt="AgroEdge app screen showing the interface">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="project-head">
+                            <div>
+                                <p class="project-name">AgroEdge</p>
+                                <h3>Helping farmers manage operations through a modern digital platform.</h3>
+                            </div>
+                        </div>
+                        <p class="project-hook">A practical product built around authentication, application flows, and operational dashboards.</p>
+                        <div class="project-grid compact">
+                            <div><span>Problem</span><p>Agri workflows needed a more organized digital layer for users and operators.</p></div>
+                            <div><span>Solution</span><p>Shipped secure frontend and backend experiences connected to Supabase.</p></div>
+                            <div><span>My Role</span><p>Frontend engineering, backend integration, code review.</p></div>
+                            <div><span>Tech Stack</span><p>React, Supabase, modern frontend tooling.</p></div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://agroedge-vf.netlify.app/" target="_blank" rel="noopener">Live Demo</a>
+                            
+                        </div>
+                    </div>
+                </article>
 
-    <section id="contact" class="section contact-section" data-reveal="fade-up">
-        <h2 class="section-title">Contact Me</h2>
-        <p>Email: <a href="mailto:sakena1303@gmail.com">sakena1303@gmail.com</a></p>
-        <p>Github:  <a href="https://github.com/sakina1303" target="_blank">https://github.com/sakina1303</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/sakina-farukh-ahemad-809b3732b/" target="_blank">https://www.linkedin.com/in/sakina-farukh-ahemad-809b3732b/</a></p>
-    </section>
-    
-    <section id="quote" class="section quote-section" data-reveal="fade-up">
-        <h2 class="section-title">Quote of the Day</h2>
-        <blockquote id="quoteDisplay">Click the button to get a quote!</blockquote>
-        <button id="quoteButton" class="btn btn-primary">Generate Quote</button>
-    </section>
+                <article class="case-study" data-reveal="fade-up">
+                    <div class="case-study-visual quiz">
+                        <div class="mock-window">
+                            <div class="mock-toolbar"><span></span><span></span><span></span></div>
+                            <div class="mock-screen aurora-screen">
+                                <img class="project-art" src="qai.png" alt="AI Quiz Generator app screen showing the interface">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="case-study-content">
+                        <div class="project-head">
+                            <div>
+                                <p class="project-name">AI Quiz Generator</p>
+                                <h3>Generate personalized quizzes instantly using AI.</h3>
+                            </div>
+                        </div>
+                        <p class="project-hook">A Gemini-powered learning tool that creates targeted MCQs on demand.</p>
+                        <div class="project-grid compact">
+                            <div><span>Problem</span><p>Users needed a faster way to create study material tailored to a topic.</p></div>
+                            <div><span>Solution</span><p>Used AI to generate quizzes that feel customized and immediate.</p></div>
+                            <div><span>My Role</span><p>Product concept and implementation.</p></div>
+                            <div><span>Tech Stack</span><p>AI integration, web app architecture.</p></div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://aiquizgenerator-69r2.onrender.com/" target="_blank" rel="noopener">Live Demo</a>
+                            <a href="https://github.com/sakina1303/QuizGenerator" target="_blank" rel="noopener">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-    <section id="footer" class="footer-section" data-reveal="fade-up">
-        
-        <h2>Thank you for visiting my portfolio!</h2>
-        <p>If you have any questions or would like to connect, feel free to reach out.</p>
+        <section id="opensource" class="section shell" data-reveal="fade-up">
+            <div class="section-heading section-heading-row">
+                <div>
+                    <p class="section-kicker">Open Source</p>
+                    <h2 class="section-title">I build like a contributor, not a consumer.</h2>
+                </div>
+                <p class="section-copy">My GitHub habit is rooted in shipping meaningful PRs, maintaining products with care, and learning how communities actually collaborate.</p>
+            </div>
+            <div class="open-source-grid">
+                <article class="open-source-card">
+                    <h3>AOSSIE</h3>
+                    <p>Contributed with a maintainer mindset and focused on making code easier to trust, review, and evolve.</p>
+                </article>
+                <article class="open-source-card">
+                    <h3>EduAid</h3>
+                    <p>Worked on meaningful improvements that supported product quality and student-facing utility.</p>
+                </article>
+                <article class="open-source-card">
+                    <h3>Hacktoberfest</h3>
+                    <p>Used open source as a way to practice collaboration, review discipline, and thoughtful shipping.</p>
+                </article>
+            </div>
+        </section>
 
-    <footer>
-        © <span id="year"></span> Sakina. All rights reserved.
+        <section id="skills" class="section shell" data-reveal="fade-up">
+            <div class="section-heading">
+                <p class="section-kicker">Skills</p>
+                <h2 class="section-title">Tools I use to shape products.</h2>
+            </div>
+            <div class="skill-groups">
+                <div class="skill-group">
+                    <h3>Languages</h3>
+                    <div class="pill-list"><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>HTML</span><span>CSS</span><span>C++</span><span>SQL</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>Frameworks</h3>
+                    <div class="pill-list"><span>React</span><span>React Native</span><span>Node.js</span><span>Express.js</span><span>Prisma</span><span>Supabase</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>Product</h3>
+                    <div class="pill-list"><span>Product thinking</span><span>User journeys</span><span>Design systems</span><span>IA</span><span>Stakeholder alignment</span><span>Sprint planning</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>AI</h3>
+                    <div class="pill-list"><span>Prompting</span><span>Gemini</span><span>Offline AI patterns</span><span>Personalization</span><span>Workflow automation</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>Cloud</h3>
+                    <div class="pill-list"><span>Vercel</span><span>Netlify</span><span>GitHub</span><span>Supabase</span><span>Deployment workflows</span></div>
+                </div>
+                <div class="skill-group">
+                    <h3>Design</h3>
+                    <div class="pill-list"><span>Figma</span><span>UI/UX</span><span>Motion</span><span>Responsive design</span><span>Visual hierarchy</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="section shell" data-reveal="fade-up">
+            <div class="section-heading">
+                <p class="section-kicker">Achievements</p>
+                <h2 class="section-title">Milestones that shaped the journey.</h2>
+            </div>
+            <div class="achievement-grid">
+                <article class="achievement-card"><span>01</span><h3>AOSSIE (Google Summer of Code Organization)</h3><p>Contributed to open-source work with real-world collaboration and delivery expectations.</p></article>
+                <article class="achievement-card"><span>02</span><h3>Open Source Maintainer</h3><p>Built a maintainer mindset around code quality, PR review, and community reliability.</p></article>
+                <article class="achievement-card"><span>03</span><h3>Smart India Hackathon</h3><p>Helped frame an offline-first education concept for low-connectivity users.</p></article>
+                <article class="achievement-card"><span>04</span><h3>Internships</h3><p>Worked across product and engineering teams to translate ideas into execution.</p></article>
+                <article class="achievement-card"><span>05</span><h3>Leadership</h3><p>Led a team of developers and coordinated work across multiple functions.</p></article>
+            </div>
+        </section>
+
+        <section id="contact" class="section shell contact-section" data-reveal="fade-up">
+            <div class="contact-hero">
+                <div>
+                    <p class="section-kicker">Contact</p>
+                    <h2 class="section-title">Let’s build something meaningful together.</h2>
+                    <p class="section-copy">I’m open to roles where product thinking, design taste, engineering depth, and AI ambition all matter.</p>
+                </div>
+                <a class="btn btn-primary contact-cta" href="mailto:sakena1303@gmail.com">Email me</a>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:sakena1303@gmail.com">sakena1303@gmail.com</a>
+                <a href="https://www.linkedin.com/in/sakina-farukh-ahemad-809b3732b/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/sakina1303" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://drive.google.com/file/d/1E0ys_E8xgMWXHF6oiLmTT4LqMigGJTUM/view?usp=sharing" target="_blank" rel="noopener">Resume</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year"></span> Sakina Farukh Ahemad. Built to feel like a product launch, not a template.</p>
     </footer>
+
     <script src="script.js"></script>
-    
     <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
-    
-   
 </body>
 </html>

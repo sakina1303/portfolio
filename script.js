@@ -1,57 +1,60 @@
-// Wait for the DOM to fully load
-document.addEventListener("DOMContentLoaded", () => {
-    // Theme toggling with light/dark palettes
-    const themeToggle = document.getElementById("themeToggle");
-    const themeToggleLabel = themeToggle?.querySelector(".theme-toggle-label");
+document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
-    const storageKey = "preferred-theme";
-    const prefersLightQuery = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: light)") : null;
-    const prefersReducedMotionQuery = typeof window.matchMedia === "function" ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleLabel = themeToggle?.querySelector('.theme-toggle-label');
+    const storageKey = 'preferred-theme';
+    const prefersLightQuery = window.matchMedia('(prefers-color-scheme: light)');
+    const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    const activeSectionLabel = document.getElementById('activeSectionLabel');
+    const navLinks = Array.from(document.querySelectorAll('.main-nav a'));
+    const revealElements = Array.from(document.querySelectorAll('[data-reveal]'));
+    const parallaxNodes = Array.from(document.querySelectorAll('[data-parallax]'));
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    const yearElement = document.getElementById('year');
 
-    const applyTheme = (theme, { persist = false } = {}) => {
-        const normalized = theme === "light" ? "light" : "dark";
-        root.setAttribute("data-theme", normalized);
+    const sectionOrder = [
+        { id: 'hero', label: 'Hero' },
+        { id: 'about', label: 'About' },
+        { id: 'experience', label: 'Experience' },
+        { id: 'projects', label: 'Projects' },
+        { id: 'opensource', label: 'Open Source' },
+        { id: 'skills', label: 'Skills' },
+        { id: 'achievements', label: 'Achievements' },
+        { id: 'contact', label: 'Contact' }
+    ];
+
+    const applyTheme = (theme, persist = false) => {
+        const normalized = theme === 'light' ? 'light' : 'dark';
+        root.setAttribute('data-theme', normalized);
 
         if (themeToggle) {
             themeToggle.dataset.mode = normalized;
-            const label = normalized.charAt(0).toUpperCase() + normalized.slice(1);
-            if (themeToggleLabel) {
-                themeToggleLabel.textContent = label;
-            }
-            const nextTheme = normalized === "light" ? "dark" : "light";
-            themeToggle.setAttribute("aria-label", `Activate ${nextTheme} mode`);
+            themeToggle.setAttribute('aria-label', `Activate ${normalized === 'light' ? 'dark' : 'light'} mode`);
+        }
+
+        if (themeToggleLabel) {
+            themeToggleLabel.textContent = normalized === 'light' ? 'Light' : 'Dark';
         }
 
         if (persist) {
             try {
                 localStorage.setItem(storageKey, normalized);
             } catch (error) {
-                console.warn("Unable to persist theme preference:", error);
+                console.warn('Unable to persist theme preference:', error);
             }
         }
     };
 
-    const storedTheme = (() => {
-        try {
-            return localStorage.getItem(storageKey);
-        } catch (error) {
-            console.warn("Unable to access stored theme preference:", error);
-            return null;
-        }
-    })();
+    applyTheme('dark');
 
-    const initialTheme = storedTheme ?? (prefersLightQuery?.matches ? "light" : "dark");
-    applyTheme(initialTheme, { persist: Boolean(storedTheme) });
+    themeToggle?.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        applyTheme(current === 'light' ? 'dark' : 'light', true);
+    });
 
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            const current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-            const next = current === "light" ? "dark" : "light";
-            applyTheme(next, { persist: true });
-        });
-    }
-
-    const handleSystemThemeChange = (event) => {
+    prefersLightQuery.addEventListener?.('change', (event) => {
         const hasStoredPreference = (() => {
             try {
                 return Boolean(localStorage.getItem(storageKey));
@@ -59,222 +62,160 @@ document.addEventListener("DOMContentLoaded", () => {
                 return false;
             }
         })();
-        if (hasStoredPreference) return;
-        applyTheme(event.matches ? "light" : "dark");
-    };
 
-    if (prefersLightQuery?.addEventListener) {
-        prefersLightQuery.addEventListener("change", handleSystemThemeChange);
-    } else if (prefersLightQuery?.addListener) {
-        prefersLightQuery.addListener(handleSystemThemeChange);
-    }
-
-    // Scroll reveal animations
-    const revealElements = document.querySelectorAll("[data-reveal]");
-    const setRevealDelay = (element) => {
-        const delay = Number(element.dataset.revealDelay);
-        if (!Number.isNaN(delay)) {
-            element.style.setProperty("--reveal-delay", `${delay}ms`);
+        if (!hasStoredPreference) {
+            applyTheme(event.matches ? 'light' : 'dark');
         }
+    });
+
+    const updateRevealDelay = () => {
+        revealElements.forEach((element) => {
+            const delay = Number(element.dataset.revealDelay);
+            if (!Number.isNaN(delay)) {
+                element.style.setProperty('--reveal-delay', `${delay}ms`);
+            }
+        });
     };
 
-    const showRevealsImmediately = () => {
-        revealElements.forEach((element) => {
-            element.classList.add("is-visible");
-        });
+    const revealAll = () => {
+        revealElements.forEach((element) => element.classList.add('is-visible'));
     };
 
     let revealObserver = null;
-    const createRevealObserver = () => new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                    observer.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
-    );
-
-    const stopRevealObserver = () => {
-        revealObserver?.disconnect();
-        revealObserver = null;
-    };
-
     const startRevealObserver = () => {
-        if (!("IntersectionObserver" in window)) {
-            showRevealsImmediately();
+        if (!('IntersectionObserver' in window)) {
+            revealAll();
             return;
         }
-        stopRevealObserver();
-        revealObserver = createRevealObserver();
-        revealElements.forEach((element) => {
-            if (!element.classList.contains("is-visible")) {
-                revealObserver?.observe(element);
-            }
-        });
+
+        revealObserver?.disconnect();
+        revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver?.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+
+        revealElements.forEach((element) => revealObserver?.observe(element));
     };
 
     if (revealElements.length) {
-        revealElements.forEach(setRevealDelay);
-
-        if (prefersReducedMotionQuery?.matches) {
-            showRevealsImmediately();
+        updateRevealDelay();
+        if (prefersReducedMotionQuery.matches) {
+            revealAll();
         } else {
             startRevealObserver();
         }
-
-        const handleMotionPreferenceChange = (event) => {
-            if (event.matches) {
-                stopRevealObserver();
-                showRevealsImmediately();
-            } else {
-                startRevealObserver();
-            }
-        };
-
-        if (prefersReducedMotionQuery?.addEventListener) {
-            prefersReducedMotionQuery.addEventListener("change", handleMotionPreferenceChange);
-        } else if (prefersReducedMotionQuery?.addListener) {
-            prefersReducedMotionQuery.addListener(handleMotionPreferenceChange);
-        }
     }
 
-    // Parallax accents
-    const parallaxNodes = document.querySelectorAll("[data-parallax]");
     let parallaxRAF = null;
-    let parallaxActive = false;
-
     const updateParallax = () => {
         const scrollY = window.scrollY;
         parallaxNodes.forEach((node) => {
-            const speed = Number(node.dataset.parallax) || 0.15;
-            const offset = scrollY * speed * -1;
-            node.style.setProperty("--parallax-offset", `${offset}px`);
+            const speed = Number(node.dataset.parallax) || 0.08;
+            node.style.setProperty('--parallax-offset', `${scrollY * speed * -1}px`);
         });
         parallaxRAF = null;
     };
 
     const scheduleParallax = () => {
-        if (parallaxRAF !== null) return;
-        parallaxRAF = requestAnimationFrame(updateParallax);
+        if (parallaxRAF === null) {
+            parallaxRAF = requestAnimationFrame(updateParallax);
+        }
     };
 
-    const disableParallax = () => {
-        if (parallaxActive) {
-            window.removeEventListener("scroll", scheduleParallax);
-            parallaxActive = false;
+    const reduceMotion = prefersReducedMotionQuery.matches;
+    if (reduceMotion) {
+        parallaxNodes.forEach((node) => node.style.setProperty('--parallax-offset', '0px'));
+    } else if (parallaxNodes.length) {
+        updateParallax();
+        window.addEventListener('scroll', scheduleParallax, { passive: true });
+    }
+
+    const updateScrollProgress = () => {
+        if (!scrollProgressBar) return;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+    };
+
+    const updateActiveSection = () => {
+        const viewportCenter = window.innerHeight * 0.42;
+        let currentSection = sectionOrder[0];
+
+        for (const section of sectionOrder) {
+            const element = document.getElementById(section.id);
+            if (!element) continue;
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
+                currentSection = section;
+                break;
+            }
         }
-        if (parallaxRAF !== null) {
-            cancelAnimationFrame(parallaxRAF);
-            parallaxRAF = null;
+
+        if (activeSectionLabel) {
+            activeSectionLabel.textContent = currentSection.label;
         }
-        parallaxNodes.forEach((node) => {
-            node.style.setProperty("--parallax-offset", "0px");
+
+        navLinks.forEach((link) => {
+            const target = link.getAttribute('href');
+            const active = target === `#${currentSection.id}`;
+            link.classList.toggle('is-active', active);
         });
     };
 
-    const enableParallax = () => {
-        if (parallaxActive || !parallaxNodes.length) return;
-        parallaxActive = true;
-        updateParallax();
-        window.addEventListener("scroll", scheduleParallax, { passive: true });
+    let ticking = false;
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            updateScrollProgress();
+            updateActiveSection();
+            if (!reduceMotion && parallaxNodes.length) {
+                scheduleParallax();
+            }
+            ticking = false;
+        });
     };
 
-    if (parallaxNodes.length) {
-        if (prefersReducedMotionQuery?.matches) {
-            disableParallax();
-        } else {
-            enableParallax();
-        }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+        updateScrollProgress();
+        updateActiveSection();
+    });
 
-        const handleParallaxPreferenceChange = (event) => {
-            if (event.matches) {
-                disableParallax();
-            } else {
-                enableParallax();
-            }
+    updateScrollProgress();
+    updateActiveSection();
+
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+
+    if (cursorDot && cursorRing && !reduceMotion) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        let cursorFrame = null;
+
+        const animateCursor = () => {
+            ringX += (mouseX - ringX) * 0.14;
+            ringY += (mouseY - ringY) * 0.14;
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+            cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+            cursorFrame = requestAnimationFrame(animateCursor);
         };
 
-        if (prefersReducedMotionQuery?.addEventListener) {
-            prefersReducedMotionQuery.addEventListener("change", handleParallaxPreferenceChange);
-        } else if (prefersReducedMotionQuery?.addListener) {
-            prefersReducedMotionQuery.addListener(handleParallaxPreferenceChange);
-        }
-    }
-
-    // Example: Add functionality to a button
-    const button = document.getElementById("myButton");
-    if (button) {
-        button.addEventListener("click", () => {
-            alert("Button clicked!");
-        });
-    }
-
-    // Example: Dynamically update content
-    const heading = document.getElementById("mainHeading");
-    if (heading) {
-        heading.textContent = "Welcome to My Portfolio!";
-    }
-
-    // Example: Display current date
-    const dateElement = document.getElementById("currentDate");
-    if (dateElement) {
-        const currentDate = new Date().toLocaleDateString();
-        dateElement.textContent = `Today's Date: ${currentDate}`;
-    }
-
-    // Example: Form submission handling
-    const form = document.getElementById("contactForm");
-    if (form) {
-        form.addEventListener("submit", (event) => {
-            event.preventDefault(); // Prevent form from refreshing the page
-            alert("Form submitted successfully!");
-        });
-    }
-
-    // New Feature: Scroll to top button
-    const scrollToTopButton = document.getElementById("scrollToTop");
-    if (scrollToTopButton) {
-        scrollToTopButton.addEventListener("click", () => {
-            const prefersReducedMotion = prefersReducedMotionQuery?.matches;
-            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-        });
-    }
-
-    // New Feature: Character counter for a textarea
-    const messageInput = document.getElementById("messageInput");
-    const charCounter = document.getElementById("charCounter");
-    if (messageInput && charCounter) {
-        messageInput.addEventListener("input", () => {
-            const maxLength = 200;
-            const currentLength = messageInput.value.length;
-            charCounter.textContent = `${currentLength}/${maxLength} characters`;
-            if (currentLength > maxLength) {
-                charCounter.style.color = "red";
-            } else {
-                charCounter.style.color = "black";
+        window.addEventListener('pointermove', (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            if (!cursorFrame) {
+                animateCursor();
             }
-        });
-    }
+        }, { passive: true });
 
-    // New Feature: Random quote generator
-    const quoteButton = document.getElementById("quoteButton");
-    const quoteDisplay = document.getElementById("quoteDisplay");
-    if (quoteButton && quoteDisplay) {
-        const quotes = [
-            "The best way to predict the future is to invent it.",
-            "Life is 10% what happens to us and 90% how we react to it.",
-            "Success is not the key to happiness. Happiness is the key to success.",
-            "Your time is limited, so don’t waste it living someone else’s life.",
-            "The only way to do great work is to love what you do.",
-            
-        ];
-        quoteButton.addEventListener("click", () => {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            quoteDisplay.textContent = quotes[randomIndex];
-        });
+        animateCursor();
     }
-    
 });
