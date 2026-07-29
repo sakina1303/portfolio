@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (themeToggleLabel) {
-            themeToggleLabel.textContent = normalized === 'light' ? 'Light' : 'Dark';
+            themeToggleLabel.textContent = normalized === 'light' ? 'Dark' : 'Light';
         }
 
         if (persist) {
