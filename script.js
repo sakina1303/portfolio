@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'hero', label: 'Hero' },
         { id: 'about', label: 'About' },
         { id: 'experience', label: 'Experience' },
+        { id: 'design-work', label: 'Design Work' },
         { id: 'projects', label: 'Projects' },
         { id: 'opensource', label: 'Open Source' },
         { id: 'skills', label: 'Skills' },
