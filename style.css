@@ -664,6 +664,7 @@ main{position:relative;z-index:1}
 .figma-link{--card-glow:rgba(162,89,255,.22);--card-border:rgba(162,89,255,.48)}
 .canva-link{--card-glow:rgba(0,196,204,.2);--card-border:rgba(0,196,204,.48)}
 .indesign-link{--card-glow:rgba(255,51,102,.18);--card-border:rgba(255,51,102,.46)}
+.frontend-link{--card-glow:rgba(78,165,255,.2);--card-border:rgba(78,165,255,.48)}
 
 .design-tool-mark{
   flex:0 0 auto;
@@ -681,6 +682,7 @@ main{position:relative;z-index:1}
 }
 .canva-link .design-tool-mark{background:linear-gradient(135deg,#00c4cc,#6c63ff)}
 .indesign-link .design-tool-mark{background:linear-gradient(135deg,#ff3366,#b71cff)}
+.frontend-link .design-tool-mark{background:linear-gradient(135deg,#2563eb,#4ea5ff);font-size:1rem}
 .design-link-content{position:relative;z-index:1;display:flex;flex-direction:column;gap:5px;min-width:0}
 .design-link-label{color:var(--muted);font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .design-link-content strong{font-family:'Manrope',sans-serif;font-size:1.14rem;line-height:1.35}
